@@ -4,12 +4,13 @@ import './App.css';
 import SingleCard from './Components/SingleCard';
 
 const cardImages = [
-  { src: "/images/helmet.jpg", matched: false },
-  { src: "/images/potion.jpg", matched: false },
-  { src: "/images/ring.jpg", matched: false },
-  { src: "/images/scroll.jpg", matched: false },
-  { src: "/images/shield.jpg", matched: false },
-  { src: "/images/sword.jpg", matched: false },
+  
+  { src: "../public/images/helmet.jpg", matched: false },
+  { src: "../public/images/potion.jpg", matched: false },
+  { src: "../public/images/ring.jpg", matched: false },
+  { src: "../public/images/scroll.jpg", matched: false },
+  { src: "../public/images/shield.jpg", matched: false },
+  { src: "../public/images/sword.jpg", matched: false },
 ]
 
 function App() {
