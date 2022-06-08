@@ -5,7 +5,7 @@ This is a classic card memory game - find the two matching cards, and the cards 
 
 ### Languages
 
-React, JavaScript, CSS, HTML
+React, JavaScript, CSS, HTML, JSX
 
 ### Project Highlights
 

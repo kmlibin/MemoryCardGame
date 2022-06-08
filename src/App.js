@@ -1,58 +1,50 @@
-
-import { useEffect, useState } from 'react';
-import './App.css';
-import SingleCard from './Components/SingleCard';
+import { useState, useEffect } from 'react'
+import './App.css'
+import SingleCard from './Components/SingleCard'
 
 const cardImages = [
-  
-  { src: "../public/images/helmet.jpg", matched: false },
-  { src: "../public/images/potion.jpg", matched: false },
-  { src: "../public/images/ring.jpg", matched: false },
-  { src: "../public/images/scroll.jpg", matched: false },
-  { src: "../public/images/shield.jpg", matched: false },
-  { src: "../public/images/sword.jpg", matched: false },
+  { "src": "https://kmlibin.github.io/MemoryCardGame/img/helmet-1.png", matched: false },
+  { "src": "https://kmlibin.github.io/MemoryCardGame/img/potion-1.png", matched: false },
+  { "src": "https://kmlibin.github.io/MemoryCardGame/img/ring-1.png", matched: false },
+  { "src": "https://kmlibin.github.io/MemoryCardGame/img/scroll-1.png", matched: false },
+  { "src": "https://kmlibin.github.io/MemoryCardGame/img/shield-1.png", matched: false },
+  { "src": "https://kmlibin.github.io/MemoryCardGame/img/sword-1.png", matched: false },
 ]
 
 function App() {
-
   const [cards, setCards] = useState([])
   const [turns, setTurns] = useState(0)
   const [choiceOne, setChoiceOne] = useState(null)
   const [choiceTwo, setChoiceTwo] = useState(null)
   const [disabled, setDisabled] = useState(false)
 
-  //double and shuffle cards
-
+  // shuffle cards for new game
   const shuffleCards = () => {
     const shuffledCards = [...cardImages, ...cardImages]
-
       .sort(() => Math.random() - 0.5)
-      .map((prev) => ({ ...prev, id: Math.random() }))
-
+      .map(card => ({ ...card, id: Math.random() }))
+      
     setChoiceOne(null)
     setChoiceTwo(null)
     setCards(shuffledCards)
     setTurns(0)
-
   }
 
-  // handle choice
-
+  // handle a choice
   const handleChoice = (card) => {
+    console.log(card)
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
-
   }
 
-  //compare two cards
-
+  // compare selected cards
   useEffect(() => {
-
     if (choiceOne && choiceTwo) {
       setDisabled(true)
+
       if (choiceOne.src === choiceTwo.src) {
-        setCards(prev => {
-          return prev.map(card => {
-            if (card.src === choiceTwo.src) {
+        setCards(prevCards => {
+          return prevCards.map(card => {
+            if (card.src === choiceOne.src) {
               return { ...card, matched: true }
             } else {
               return card
@@ -63,19 +55,19 @@ function App() {
       } else {
         setTimeout(() => resetTurn(), 1000)
       }
+
     }
   }, [choiceOne, choiceTwo])
 
-
-  //reset and increase turn count
-  function resetTurn() {
+  // reset choice, increase turn
+  const resetTurn = () => {
     setChoiceOne(null)
     setChoiceTwo(null)
-    setTurns(prev => prev + 1)
+    setTurns(prevTurns => prevTurns + 1)
     setDisabled(false)
   }
 
-  // starts game upon load
+  // start new game 
   useEffect(() => {
     shuffleCards()
   }, [])
@@ -87,17 +79,19 @@ function App() {
 
       <div className="card-grid">
         {cards.map(card => (
-          <SingleCard
-            card={card}
+          <SingleCard 
             key={card.id}
+            card={card}
             handleChoice={handleChoice}
             flipped={card === choiceOne || card === choiceTwo || card.matched}
-            disabled={disabled} />
+            disabled={disabled}
+          />
         ))}
       </div>
+
       <p>Turns: {turns}</p>
     </div>
   );
 }
 
-export default App;
+export default App
