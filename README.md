@@ -1,6 +1,8 @@
 # Memory Card Game
 ## Udemy React Course Project
 
+gh-pages deploy: https://kmlibin.github.io/MemoryCardGame/
+
 This is a classic card memory game - find the two matching cards, and the cards will stay face up. If they don't match, they will flip back over. There is a counter at the bottom of the screen that tracks the amount of turns you've taken, and it resets when you shuffle the deck.
 
 ### Languages
